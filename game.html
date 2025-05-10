@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Game Number</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    h1 {
+      color: #ff69b4;
+      margin-bottom: 20px;
+    }
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ffb6c1;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      width: 100px;
+    }
+    button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+    .message {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Guess a Number!</h1>
+    <input type="number" id="userGuess" placeholder="Enter number">
+    <br>
+    <button onclick="checkGuess()">Submit</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    function isPrime(num) {
+      if (num <= 1) return false;
+      if (num === 2) return true;
+      if (num % 2 === 0) return false;
+      for (let i = 3; i <= Math.sqrt(num); i += 2) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    }
+
+    function checkGuess() {
+      let user = parseInt(document.getElementById("userGuess").value);
+      let message = document.getElementById("message");
+
+      if (isPrime(user)) {
+        message.innerHTML = "🎉 Correct! That's a good one!";
+        message.style.color = "green";
+      } else {
+        message.innerHTML = "❌ Not a perfect number. Try again!";
+        message.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
